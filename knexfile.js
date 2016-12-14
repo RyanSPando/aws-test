@@ -23,7 +23,7 @@ module.exports = {
   },
   production: {
     client: 'postgresql',
-    connection: `postgres://${process.env.RDS_HOSTNAME}:${process.env.RDS_PORT}/`,
+    connection: `postgres://${process.env.RDS_HOSTNAME}:${process.env.RDS_PORT}/${databaseName}`,
     migrations: {
       directory: __dirname + '/src/server/db/migrations'
     },
