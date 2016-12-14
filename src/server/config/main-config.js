@@ -10,6 +10,7 @@
   const flash = require('connect-flash');
   const morgan = require('morgan');
   const nunjucks = require('nunjucks');
+  const knex = require('../db/connection');
 
   // *** view folders *** //
   const viewFolders = [
@@ -45,5 +46,15 @@
     app.use(express.static(path.join(__dirname, '..', '..', 'client')));
 
   };
+  //DB migrate and seed
+  knex.migrate.latest()
+  .then(function() {
+    knex('users').then(users => {
+      if (!users.length) {
+        return knex.seed.run();
+      }
+    });
+  });
+
 
 })(module.exports);
