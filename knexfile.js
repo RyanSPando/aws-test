@@ -20,5 +20,15 @@ module.exports = {
     seeds: {
       directory: __dirname + '/src/server/db/seeds'
     }
+  },
+  production: {
+    client: 'postgresql',
+    connection: `postgres://${process.env.RDS_HOSTNAME}:${process.env.RDS_PORT}/`,
+    migrations: {
+      directory: __dirname + '/src/server/db/migrations'
+    },
+    seeds: {
+      directory: __dirname + '/src/server/db/seeds'
+    }
   }
 };
